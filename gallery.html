@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcards from Sydney - Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-color: #141414;
+      --accent-red: #e43f38;
+      --bg: #faf9f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.5rem 3rem 0.75rem;
+      gap: 1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      font-size: 1rem;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding-bottom: 0.35rem;
+      border-bottom: 3px solid transparent;
+      transition: border-color 150ms ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      border-color: var(--text-color);
+      outline: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.6rem, 2vw, 2.2rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .gallery-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 3rem 2rem;
+    }
+
+    .postcard {
+      background: white;
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+    }
+
+    .image-frame {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      background: #dfe5ec;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ribbons {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+
+    .ribbon {
+      background: linear-gradient(90deg, transparent 10%, rgba(0,0,0,0.05) 50%, transparent 90%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ribbon::before,
+    .ribbon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, var(--accent-red) 40%, #fbbd15 50%, #0c8ecd 65%, #3da542 75%, transparent 80%);
+      transform: translateX(-30%);
+      opacity: 0.85;
+    }
+
+    .ribbon:nth-child(2)::before { transform: translateX(-10%); }
+    .ribbon:nth-child(3)::before { transform: translateX(0%); }
+    .ribbon:nth-child(4)::before { transform: translateX(10%); }
+    .ribbon:nth-child(5)::before { transform: translateX(20%); }
+
+    .ribbon::after {
+      background: linear-gradient(135deg, transparent 30%, #3da542 45%, #fbbd15 60%, #e43f38 75%, transparent 90%);
+      mix-blend-mode: multiply;
+      opacity: 0.35;
+    }
+
+    .postcard footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+    }
+
+    .location {
+      color: #b02b26;
+    }
+
+    .instruct {
+      padding: 0 3rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .divider {
+      flex: 1;
+      height: 1px;
+      background: #d5d5d5;
+      margin: 0 0.75rem;
+      min-width: 80px;
+    }
+
+    .tap-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .tap-hint span:last-child { font-weight: 600; }
+
+    @media (max-width: 720px) {
+      header { padding: 1.25rem 1.5rem 0.5rem; }
+      .gallery-container { padding: 0 1.5rem 1.5rem; }
+      .instruct { padding: 0 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Page view options">
+      <a href="#" aria-current="page">grid view</a>
+      <a href="#">gallery view</a>
+    </nav>
+    <h1>Postcards from Sydney</h1>
+  </header>
+
+  <section class="gallery-container" aria-label="Postcard gallery">
+    <article class="postcard">
+      <div class="image-frame" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1400&q=80" alt="Heritage brick building in Sydney" loading="lazy">
+        <div class="ribbons" aria-hidden="true">
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+        </div>
+      </div>
+      <footer>
+        <span class="location">Redfern</span>
+        <span aria-hidden="true">—</span>
+      </footer>
+    </article>
+    <article class="postcard">
+      <div class="image-frame" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad89?auto=format&fit=crop&w=1400&q=80" alt="Sydney skyline" loading="lazy">
+        <div class="ribbons" aria-hidden="true">
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+        </div>
+      </div>
+      <footer>
+        <span class="location">CBD</span>
+        <span aria-hidden="true">—</span>
+      </footer>
+    </article>
+  </section>
+
+  <div class="instruct">
+    <div class="credit">designed and developed by Marc Andre Lam</div>
+    <div class="tap-hint" aria-hidden="true">
+      <span>scroll</span>
+      <span class="divider"></span>
+      <span>to see another postcard</span>
+    </div>
+  </div>
+</body>
+</html>

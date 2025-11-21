@@ -1,1 +1,82 @@
-<!-- testing -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcards from Sydney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-color: #1a1a1a;
+      --button-bg: #d0cccc;
+      --button-hover: #c4c0c0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: #fdfdfd;
+      color: var(--text-color);
+    }
+
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      letter-spacing: 0.04em;
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+    }
+
+    button {
+      border: none;
+      background: var(--button-bg);
+      color: var(--text-color);
+      padding: 0.65rem 2.2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    button:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 4px;
+    }
+
+    button:hover {
+      background: var(--button-hover);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <h1>Postcards<br>from Sydney</h1>
+    <button id="explore-btn" type="button" aria-label="Explore the postcards gallery">explore</button>
+  </main>
+
+  <script>
+    document.getElementById('explore-btn').addEventListener('click', () => {
+      window.location.href = 'gallery.html';
+    });
+  </script>
+</body>
+</html>
